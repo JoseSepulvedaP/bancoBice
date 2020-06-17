@@ -11,7 +11,6 @@ app.get('/last', (req, res) => {
         if (!err && response.statusCode === 200) {
             const { body } = response;
             const data = JSON.parse(body);
-            console.log(data);
             return res.json({
                 ok: true,
                 data
