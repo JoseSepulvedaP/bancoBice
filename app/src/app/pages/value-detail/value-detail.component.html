@@ -1,1 +1,54 @@
-<p>value-detail works!</p>
+<div *ngIf="!new">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Elemento</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Unidad</th>
+        <th scope="col">Valores</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ data.key }}</td>
+        <td>{{ data.name }}</td>
+        <td>{{ data.unit }}</td>
+        <td><button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalValues">ver valores</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<app-search [key]="key" (values)="newValues($event)"></app-search>
+
+<!-- Modal -->
+<div class="modal fade" id="modalValues" tabindex="-1" role="dialog" aria-labelledby="modalValuesLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalValuesLabel">Valores de {{ data.key }} representados en {{ data.unit }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Fecha</th>
+              <th scope="col">Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let val of data.values">
+              <td>{{ val.date | date: 'dd-MM-yyyy':'+0' }}</td>
+              <td>{{ val.value }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

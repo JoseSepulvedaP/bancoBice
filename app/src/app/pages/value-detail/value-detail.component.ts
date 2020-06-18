@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IndeconService } from '../../services/indecon.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Value } from '../../interfaces/value.interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-value-detail',
@@ -10,9 +12,13 @@ import { ActivatedRoute } from '@angular/router';
 export class ValueDetailComponent implements OnInit {
 
   public key: string = '';
+  public new: boolean = false;
+  public data: Value = {};
+
 
   constructor(
     private indeconService: IndeconService,
+    private router: Router,
     private route: ActivatedRoute
   ) { }
 
@@ -22,11 +28,33 @@ export class ValueDetailComponent implements OnInit {
   }
 
   getValueDetail(key: string) {
+    this.new = false;
     this.indeconService.getValueDetail(key)
       .subscribe((resp: any) => {
-        console.log('RESP', resp);
+        const { values } = resp.data;
+        let newValues: Array<Object> = [];
+        Object.getOwnPropertyNames(values).forEach((val) => {
+          let valueObj = {
+            date: (new Date(Number(val) * 1000)).toString(),
+            value: values[val]
+          };
+          newValues.push(valueObj);
+        });
+        this.data = resp.data;
+        this.data.values = newValues;
+      }, (err: any) => {
+        if (err) {
+          Swal.fire(`${err.error.err.message}`, 'Puede realizar una nueva búsqueda', 'error');
+          this.new = true;
+        }
     });
   }
 
+  newValues(key: any) {
+    if (this.key !== key) {
+      this.getValueDetail(key);
+      this.router.navigate([`/values/${key}`]);
+    }
+  }
 
 }

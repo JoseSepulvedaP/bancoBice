@@ -1,1 +1,24 @@
-<p>date-value-detail works!</p>
+<div *ngIf="!new">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Elemento</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Unidad</th>
+        <th scope="col">Valor</th>
+        <th scope="col">Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ data.key }}</td>
+        <td>{{ data.name }}</td>
+        <td>{{ data.unit }}</td>
+        <td>{{ data.value }}</td>
+        <td>{{ data.date | date: 'dd-MM-yyyy':'+0' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<app-search [key]="key" [date]="date" (values)="newValues($event)"></app-search>
+

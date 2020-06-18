@@ -1,0 +1,25 @@
+<div class="containerForm">
+  <form [formGroup]="searchForm">
+    <div class="form-row">
+      <div class="col">
+        <input formControlName="key" placeholder="Ingrese valor" type="text" class="form-control" required
+          [ngClass]="{ 'is-invalid': searchForm.get('key').errors && showErrorData }">
+        <div *ngIf="searchForm.get('key').errors && showErrorData" class="invalid-feedback">
+          <div *ngIf="searchForm.get('key').errors.required">Debe ingresar valor para realizar la búsqueda</div>
+        </div>
+      </div>
+      <div class="col" *ngIf="date">
+        <input formControlName="date" placeholder="Ingrese fecha" type="text" class="form-control" required
+        [ngClass]="{ 'is-invalid': searchForm.get('date').errors && showErrorData }" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }">
+        <div *ngIf="searchForm.get('date').errors && showErrorData" class="invalid-feedback">
+          <div *ngIf="searchForm.get('date').errors.required">Debe ingresar fecha para realizar la búsqueda</div>
+        </div>
+      </div>
+      <div class="col">
+        <button type="text" class="btn btn-dark" (click)="onSubmit()">buscar</button>
+        <button type="text" class="btn btn-dark" (click)="onClear()">limpiar</button>
+        <button type="text" class="btn btn-dark" (click)="goToBack()">volver</button>
+      </div>
+    </div>
+  </form>
+</div>

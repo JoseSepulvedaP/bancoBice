@@ -27,7 +27,7 @@ export class IndeconService {
   }
 
   /**
-   * Ontiene todos los valores de un elemento particular
+   * Obtiene todos los valores de un elemento particular
    * @param key Parámetro para la busqueda de sus valores
    */
   getValueDetail(key: string): Observable<any> {

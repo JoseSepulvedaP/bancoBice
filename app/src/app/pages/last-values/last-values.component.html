@@ -1,1 +1,25 @@
-<p>last-values works!</p>
+<div *ngIf="dataOk">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Elemento</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Unidad</th>
+        <th scope="col">Valor</th>
+        <th scope="col">Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let val of data">
+        <td>{{ val.key }}</td>
+        <td>{{ val.name }}</td>
+        <td>{{ val.unit }}</td>
+        <td>{{ val.value }}</td>
+        <td>{{ val.date | date: 'dd-MM-yyyy':'+0' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="col" *ngIf="showBtn">
+  <button type="text" class="btn btn-dark btn-lg btn-block" (click)="goToBack()">volver</button>
+</div>
