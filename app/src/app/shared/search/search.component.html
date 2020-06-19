@@ -18,7 +18,7 @@
       <div class="col">
         <button type="text" class="btn btn-dark" (click)="onSubmit()">buscar</button>
         <button type="text" class="btn btn-dark" (click)="onClear()">limpiar</button>
-        <button type="text" class="btn btn-dark" (click)="goToBack()">volver</button>
+        <button *ngIf="!home" type="text" class="btn btn-dark" (click)="goToBack()">volver</button>
       </div>
     </div>
   </form>

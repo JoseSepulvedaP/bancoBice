@@ -16,8 +16,8 @@ export class IndeconService {
   /**
    * Obtiene los últimos valores de todos los elementos
    */
-  getLastData(): Observable<any> {
-    const url = `${environment.urlApi}/last`;
+  getLastData(test?: boolean): Observable<any> {
+    const url = `${!test ? environment.urlApi : environment.urlExternalApi}/last`;
     return this.http.get(url)
               .pipe(
                 map((resp: any) => {
@@ -30,8 +30,8 @@ export class IndeconService {
    * Obtiene todos los valores de un elemento particular
    * @param key Parámetro para la busqueda de sus valores
    */
-  getValueDetail(key: string): Observable<any> {
-    const url = `${environment.urlApi}/values/${key}`;
+  getValueDetail(key: string, test?: boolean): Observable<any> {
+    const url = `${!test ? environment.urlApi : environment.urlExternalApi}/values/${key}`;
     return this.http.get(url)
               .pipe(
                 map((resp: any) => {
@@ -45,8 +45,8 @@ export class IndeconService {
    * @param key Parámetro para la busqueda de sus valores
    * @param date Parámetro para filtrar busqueda por fecha
    */
-  getDateValueDetail(key: string, date: string): Observable<any> {
-    const url = `${environment.urlApi}/date/${key}/${date}`;
+  getDateValueDetail(key: string, date: string, test?: boolean): Observable<any> {
+    const url = `${!test ? environment.urlApi : environment.urlExternalApi}/date/${key}/${date}`;
     return this.http.get(url)
               .pipe(
                 map((resp: any) => {

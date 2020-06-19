@@ -7,6 +7,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-analytics.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyC2LHOsmUU4TR0ZbfZC10gYMJEHVNDg-jk",
+      authDomain: "app-indecon.firebaseapp.com",
+      databaseURL: "https://app-indecon.firebaseio.com",
+      projectId: "app-indecon",
+      storageBucket: "app-indecon.appspot.com",
+      messagingSenderId: "974963104774",
+      appId: "1:974963104774:web:e3529a0f2cbd2b7db8f787",
+      measurementId: "G-W6MVSB186G"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+
 </head>
 <body>
   <app-root></app-root>

@@ -13,6 +13,7 @@ export class ValueDetailComponent implements OnInit {
 
   public key: string = '';
   public new: boolean = false;
+  public loading: boolean = true;
   public data: Value = {};
 
 
@@ -28,6 +29,7 @@ export class ValueDetailComponent implements OnInit {
   }
 
   getValueDetail(key: string) {
+    this.loading = true;
     this.new = false;
     this.indeconService.getValueDetail(key)
       .subscribe((resp: any) => {
@@ -42,10 +44,12 @@ export class ValueDetailComponent implements OnInit {
         });
         this.data = resp.data;
         this.data.values = newValues;
+        this.loading = false;
       }, (err: any) => {
         if (err) {
           Swal.fire(`${err.error.err.message}`, 'Puede realizar una nueva búsqueda', 'error');
           this.new = true;
+          this.loading = false;
         }
     });
   }
@@ -53,7 +57,7 @@ export class ValueDetailComponent implements OnInit {
   newValues(key: any) {
     if (this.key !== key) {
       this.getValueDetail(key);
-      this.router.navigate([`/values/${key}`]);
+      this.router.navigate([`/values/${key.toLowerCase()}`]);
     }
   }
 

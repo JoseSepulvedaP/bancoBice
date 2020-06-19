@@ -1,5 +1,5 @@
 
-const urlApi = 'https://api.cocha.com/crm'; // URL DESPLIEGUE FIREBASE - HEROKU
+const urlApi = 'https://api-indecon.herokuapp.com';
 
 export const environment = {
   production: true,

@@ -14,6 +14,7 @@ export class DateValueDetailComponent implements OnInit {
   public key: string = '';
   public date: string = '';
   public new: boolean = false;
+  public loading: boolean = true;
   public data: Value = {};
 
   constructor(
@@ -31,15 +32,18 @@ export class DateValueDetailComponent implements OnInit {
   }
 
   getDateValueDetail(key: string, date: string) {
+    this.loading = true;
     this.new = false;
     this.indeconService.getDateValueDetail(key, date)
       .subscribe((resp: any) => {
         this.data = resp.data;
         this.data.date = (new Date(resp.data.date * 1000)).toString();
+        this.loading = false;
       }, (err: any) => {
         if (err) {
           Swal.fire(`${err.error.err.message}`, 'Puede realizar una nueva búsqueda', 'error');
           this.new = true;
+          this.loading = false;
         }
     });
   }
@@ -48,7 +52,7 @@ export class DateValueDetailComponent implements OnInit {
     const { key, date } = values;
     if (this.key !== key || this.date !== date) {
       this.getDateValueDetail(key, date);
-      this.router.navigate([`/date/${key}/${date}`]);
+      this.router.navigate([`/date/${key.toLowerCase()}/${date}`]);
     }
   }
 

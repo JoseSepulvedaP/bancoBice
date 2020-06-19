@@ -19,6 +19,11 @@
   </table>
 </div>
 <app-search [key]="key" (values)="newValues($event)"></app-search>
+<div *ngIf="loading" class="d-flex justify-content-center">
+  <div class="spinner-grow" style="width: 4rem; height: 4rem;" role="status">
+    <span class="sr-only">Cargando...</span>
+  </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="modalValues" tabindex="-1" role="dialog" aria-labelledby="modalValuesLabel" aria-hidden="true">

@@ -14,6 +14,7 @@ export class SearchComponent implements OnInit {
 
   @Input() key: string;
   @Input() date: string;
+  @Input() home: string;
 
   @Output() values = new EventEmitter<any>();
 

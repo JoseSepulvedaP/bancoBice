@@ -4,13 +4,18 @@
   "description": "api desafio banco BICE",
   "main": "server/server.js",
   "scripts": {
-    "start": "nodemon server/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server/server.js",
+    "nodemon": "nodemon server/server.js",
+    "test": "mocha server/routes/indecon.test.js"
   },
   "author": "Jose Sepulveda",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
     "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "mocha": "^8.0.1",
+    "supertest": "^4.0.2"
   }
 }
